@@ -1,0 +1,12 @@
+# Navigation Node
+map_path: "../maps/0"
+nav_rate: 15
+
+# Go2 Control Node
+action_rate: 15
+auto_avoid: false
+max_v: 0.2
+max_w: 0.4
+
+# Camera Node
+fps: 30

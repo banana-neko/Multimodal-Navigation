@@ -1,0 +1,5 @@
+IMAGE_TOPIC = "/camera_image"
+GOAL_TOPIC = "/goal_node"
+FOUND_TOPIC = "/goal_found"
+WAYPOINT_TOPIC = "/waypoint"
+REACHED_GOAL_TOPIC = "/reached_goal"

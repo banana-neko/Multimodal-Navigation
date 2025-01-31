@@ -3,6 +3,7 @@ from langchain_experimental.open_clip import OpenCLIPEmbeddings
 from pymilvus import MilvusClient, DataType
 from PIL import Image
 import os
+import time
 
 
 class Memory:
@@ -12,10 +13,10 @@ class Memory:
         )
         self.collection_name = collection_name
         
-        model_name = "ViT-g-14"
-        checkpoint = "laion2b_s34b_b88k"
-        self.clip = OpenCLIPEmbeddings(model_name=model_name, checkpoint=checkpoint)
-
+        model = ('ViT-H-14-378-quickgelu', 'dfn5b')
+        start = time.time()
+        self.clip = OpenCLIPEmbeddings(model_name=model[0], checkpoint=model[1])
+        print(f"[*] model loaded. ({time.time()-start} sec)")
 
     def reset(self):
         self.client.drop_collection(
@@ -95,9 +96,11 @@ def main():
 
     memory.insert(ids=ids, image_paths=image_paths)
     """
-    
-    res = memory.search("ゴミ箱")
-    print(res)
+
+    while True:
+        query = input("query> ")
+        res = memory.search(query)
+        print(res)
 
 
 if __name__ == "__main__":
